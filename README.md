@@ -43,26 +43,73 @@
 
 这个应用已经具备了完整的功能框架，可以直接编译运行。如果需要在生产环境使用，建议添加密码加密、错误处理优化、网络状态检查等增强功能。
 
-## Build and Debug
+## 编译说明
 
-1. 最简单方法 - 双击运行  
-   直接双击运行：quick_build.bat
-   这个脚本会自动编译项目
-   生成APK文件到 app\build\outputs\apk\debug\app-debug.apk
-   提供3种安装选项（USB、手动、仅编译）
-2. 完整环境配置  
-   如果第一次使用，按顺序运行：
-   setup_environment.bat - 配置开发环境
-   set_android_env.bat - 设置环境变量
-   quick_build.bat - 编译应用
-3. 在线编译（推荐新手）  
-   使用GitHub Codespaces或Gitpod
-   无需本地安装任何工具
-   直接在浏览器中编译
-4. 命令行手动编译
+### 在 GitHub Codespaces 中编译（推荐）
+
+这个项目已经完全配置好了在 GitHub Codespaces 环境中的编译环境。
+
+#### 快速编译
+```bash
+# 编译 Debug 版本 APK
+./build_apk.sh
+
+# 编译 Release 版本 APK  
+./build_release.sh
+```
+
+#### 手动编译
+```bash
+# 清理项目
+./gradlew clean --no-daemon
+
+# 编译 Debug APK
+./gradlew assembleDebug --no-daemon
+
+# 编译 Release APK
+./gradlew assembleRelease --no-daemon
+```
+
+#### 生成的文件位置
+- Debug APK: `app/build/outputs/apk/debug/app-debug.apk`
+- Release APK: `app/build/outputs/apk/release/app-release-unsigned.apk`
+
+### 本地开发环境
+
+如果需要在本地开发，需要安装：
+
+1. **Java 11 或更高版本**
+2. **Android SDK** (API Level 34)
+3. **Android Studio** (可选，用于调试)
+
+#### 本地编译命令
 ```bash
 # Windows
 gradlew.bat assembleDebug
-# 或者
+
+# Linux/macOS  
 ./gradlew assembleDebug
 ```
+
+### 项目状态
+
+当前版本是一个**简化版本**，包含：
+- ✅ 基本的Android项目结构
+- ✅ Material Design 3 UI框架
+- ✅ 可编译的APK
+- ✅ 基础的MainActivity
+
+**暂时移除的功能**（由于Java 21兼容性）：
+- ⏸️ Hilt 依赖注入（需要迁移到KSP）
+- ⏸️ Room 数据库（需要启用编译器）
+- ⏸️ 复杂的业务逻辑类
+
+### 恢复完整功能
+
+要恢复完整功能，需要：
+
+1. **迁移到KSP**（替代Kapt）
+2. **重新添加业务逻辑类**
+3. **启用Room数据库编译器**
+
+这个版本主要用于演示完整的Android项目编译流程。

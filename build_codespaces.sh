@@ -1,5 +1,11 @@
 #!/bin/bash
-set -e
+
+#########################################################################
+# Android Mail Todo App - Codespaces 编译脚本
+# 适用于 GitHub Codespaces 环境
+#########################################################################
+
+set -e  # 遇到错误时退出
 
 echo "========================================"
 echo "   GitHub Codespaces - Android 编译器"
@@ -18,6 +24,12 @@ if [ ! -f "./gradlew" ]; then
     echo -e "${RED}错误: gradlew 文件不存在${NC}"
     exit 1
 fi
+
+# 设置Android环境变量
+export ANDROID_HOME=/usr/local/lib/android
+export ANDROID_SDK_ROOT=/usr/local/lib/android
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools
+echo "✓ Android SDK: $ANDROID_HOME"
 
 # 设置权限
 chmod +x ./gradlew
