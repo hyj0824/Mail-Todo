@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/README_BUILD.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/README_BUILD.md" />
+              <option name="updatedContent" value="# Android 邮件应用 - 无需 Android Studio 编译指南&#10;&#10;##  快速开始（3种方法）&#10;&#10;### 方法1：本地命令行编译（推荐）&#10;&#10;#### 前提条件&#10;1. **安装 Java JDK 11+**&#10;   - 下载地址：https://adoptium.net/temurin/releases/&#10;   - 选择 Windows x64 MSI 安装包&#10;   - 安装后验证：在命令行输入 `java -version`&#10;&#10;2. **运行自动化脚本**&#10;   ```bash&#10;   # 1. 双击运行环境配置&#10;   setup_environment.bat&#10;   &#10;   # 2. 设置环境变量&#10;   set_android_env.bat&#10;   &#10;   # 3. 编译应用&#10;   quick_build.bat&#10;   ```&#10;&#10;#### 详细步骤&#10;1. **配置环境**：运行 `setup_environment.bat` &#10;2. **编译应用**：运行 `quick_build.bat`&#10;3. **安装到手机**：选择USB安装或手动安装&#10;&#10;---&#10;&#10;### 方法2：在线编译（最简单）&#10;&#10;#### GitHub Codespaces（推荐）&#10;1. 将项目上传到 GitHub&#10;2. 点击 &quot;Code&quot; → &quot;Codespaces&quot; → &quot;Create codespace&quot;&#10;3. 在在线环境中运行：&#10;   ```bash&#10;   ./gradlew assembleDebug&#10;   ```&#10;4. 下载生成的 APK：`app/build/outputs/apk/debug/app-debug.apk`&#10;&#10;#### Gitpod（备选）&#10;1. 访问：https://gitpod.io/&#10;2. 输入你的 GitHub 项目链接&#10;3. 自动创建在线开发环境&#10;4. 编译并下载 APK&#10;&#10;---&#10;&#10;### 方法3：使用预构建工具&#10;&#10;#### AppCenter（微软）&#10;1. 访问：https://appcenter.ms/&#10;2. 连接 GitHub 仓库&#10;3. 配置自动构建&#10;4. 获取构建的 APK&#10;&#10;---&#10;&#10;##  手机安装步骤&#10;&#10;### USB 连接安装&#10;1. **启用开发者选项**：&#10;   - 设置 → 关于手机 → 版本号（连点7次）&#10;2. **启用 USB 调试**：&#10;   - 设置 → 开发者选项 → USB 调试&#10;3. **连接电脑**：使用 USB 数据线&#10;4. **运行安装脚本**：选择 USB 安装选项&#10;&#10;### 手动安装&#10;1. **传输 APK**：将 `app-debug.apk` 复制到手机&#10;2. **允许未知来源**：设置 → 安全 → 未知来源&#10;3. **安装应用**：在手机上点击 APK 文件&#10;&#10;---&#10;&#10;## ️ 常见问题解决&#10;&#10;### 编译失败&#10;```bash&#10;# 清理项目&#10;./gradlew clean&#10;&#10;# 重新编译&#10;./gradlew assembleDebug --stacktrace&#10;```&#10;&#10;### 依赖下载失败&#10;```bash&#10;# 使用阿里云镜像（在 build.gradle 中添加）&#10;repositories {&#10;    maven { url 'https://maven.aliyun.com/repository/google' }&#10;    maven { url 'https://maven.aliyun.com/repository/central' }&#10;    google()&#10;    mavenCentral()&#10;}&#10;```&#10;&#10;### ADB 连接问题&#10;1. 重新插拔 USB 线&#10;2. 重启 ADB：`adb kill-server &amp;&amp; adb start-server`&#10;3. 检查驱动程序安装&#10;&#10;---&#10;&#10;##  文件说明&#10;&#10;- `quick_build.bat` - 快速编译脚本&#10;- `setup_environment.bat` - 环境配置脚本&#10;- `set_android_env.bat` - 环境变量设置&#10;- `build_and_install.bat` - 完整构建安装脚本&#10;&#10;---&#10;&#10;##  高级选项&#10;&#10;### 自定义签名&#10;```bash&#10;# 生成签名密钥&#10;keytool -genkey -v -keystore my-release-key.keystore -alias my-key-alias -keyalg RSA -keysize 2048 -validity 10000&#10;&#10;# 签名 APK&#10;jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore app-debug.apk my-key-alias&#10;```&#10;&#10;### 优化 APK 大小&#10;```bash&#10;# 构建发布版本&#10;./gradlew assembleRelease&#10;&#10;# 生成 AAB 包（Google Play）&#10;./gradlew bundleRelease&#10;```&#10;&#10;---&#10;&#10;##  技术支持&#10;&#10;如果遇到问题，请检查：&#10;1. Java 版本是否正确（JDK 11+）&#10;2. 网络连接是否正常&#10;3. 磁盘空间是否充足（至少 5GB）&#10;4. 防火墙是否阻止了 Gradle 下载&#10;&#10;建议使用在线编译方案，避免本地环境配置问题。" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/build.gradle">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/build.gradle" />
+              <option name="originalContent" value="// Top-level build file where you can add configuration options common to all sub-projects/modules.&#10;buildscript {&#10;    dependencies {&#10;        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.48'&#10;    }&#10;}&#10;&#10;plugins {&#10;    id 'com.android.application' version '8.1.4' apply false&#10;    id 'org.jetbrains.kotlin.android' version '1.9.10' apply false&#10;}&#10;" />
+              <option name="updatedContent" value="// Top-level build file where you can add configuration options common to all sub-projects/modules.&#10;buildscript {&#10;    dependencies {&#10;        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.48'&#10;    }&#10;}&#10;&#10;plugins {&#10;    id 'com.android.application' version '8.1.4' apply false&#10;    id 'org.jetbrains.kotlin.android' version '1.9.10' apply false&#10;}&#10;&#10;// 添加中国镜像源，提高依赖下载速度&#10;allprojects {&#10;    repositories {&#10;        maven { url 'https://maven.aliyun.com/repository/google' }&#10;        maven { url 'https://maven.aliyun.com/repository/central' }&#10;        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }&#10;        google()&#10;        mavenCentral()&#10;        gradlePluginPortal()&#10;    }&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/set_android_env.bat">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/set_android_env.bat" />
+              <option name="updatedContent" value="@echo off&#10;echo 设置Android环境变量...&#10;set ANDROID_HOME=%USERPROFILE%\AppData\Local\Android\Sdk&#10;set ANDROID_SDK_ROOT=%ANDROID_HOME%&#10;set PATH=%ANDROID_HOME%\platform-tools;%ANDROID_HOME%\cmdline-tools\latest\bin;%PATH%&#10;echo Android环境变量已设置&#10;echo ANDROID_HOME=%ANDROID_HOME%&#10;echo.&#10;echo 现在可以运行 quick_build.bat 编译应用了" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

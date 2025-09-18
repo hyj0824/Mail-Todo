@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">邮件待办助手</string>
+
+    <!-- Account Types -->
+    <string-array name="account_types">
+        <item>Outlook</item>
+        <item>QQ邮箱</item>
+        <item>其他</item>
+    </string-array>
+
+    <!-- Email -->
+    <string name="email_sync_success">邮件同步成功</string>
+    <string name="email_sync_failed">邮件同步失败</string>
+    <string name="email_processing">正在处理邮件...</string>
+
+    <!-- Todo -->
+    <string name="todo_created">待办事项已创建</string>
+    <string name="todo_completed">任务已完成</string>
+    <string name="todo_deleted">任务已删除</string>
+    <string name="microsoft_sync_success">Microsoft To Do 同步成功</string>
+    <string name="microsoft_sync_failed">Microsoft To Do 同步失败</string>
+
+    <!-- Authentication -->
+    <string name="auth_success">认证成功</string>
+    <string name="auth_failed">认证失败</string>
+    <string name="connection_test_success">连接测试成功</string>
+    <string name="connection_test_failed">连接测试失败</string>
+
+    <!-- Common -->
+    <string name="loading">加载中...</string>
+    <string name="error_occurred">发生错误</string>
+    <string name="no_data">暂无数据</string>
+</resources>
+
