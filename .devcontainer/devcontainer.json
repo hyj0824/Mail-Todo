@@ -1,0 +1,28 @@
+{
+  "name": "Android Mail Todo App",
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/android-sdk:1": {
+      "version": "33"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "ms-vscode.vscode-gradle"
+      ]
+    }
+  },
+  "postCreateCommand": "chmod +x .devcontainer/setup.sh && .devcontainer/setup.sh",
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "App Preview"
+    }
+  }
+}
+
